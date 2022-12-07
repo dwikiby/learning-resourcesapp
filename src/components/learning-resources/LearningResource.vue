@@ -41,6 +41,7 @@ p {
 }
 
 a {
+  font-size: small;
   text-decoration: none;
   color: #ce5c00;
 }
