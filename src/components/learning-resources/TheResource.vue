@@ -11,7 +11,9 @@
       >Add Resource</base-button
     >
   </base-card>
-  <component :is="selectedTab"></component>
+  <keep-alive>
+    <component :is="selectedTab"></component>
+  </keep-alive>
 </template>
 
 <script>
@@ -29,15 +31,15 @@ export default {
       storedResources: [
         {
           id: 'official-guide',
-          title: 'Official Guide',
+          title: 'Official Guide Vue.js',
           description: 'The official Vue.js documentasion.',
           link: 'https://vuejs.org',
         },
         {
-          id: 'google',
-          title: 'Google',
-          description: 'Learn more in google...',
-          link: 'https://google.org',
+          id: 'nestjs',
+          title: 'Official Docs Nest.js',
+          description: 'The official Nest.js documentasion',
+          link: 'https://docs.nestjs.com/',
         },
       ],
     };
@@ -45,6 +47,7 @@ export default {
   provide() {
     return {
       resources: this.storedResources,
+      addResource: this.addResource,
     };
   },
   computed: {
@@ -58,6 +61,15 @@ export default {
   methods: {
     setSelectedTab(tab) {
       this.selectedTab = tab;
+    },
+    addResource(title, description, url) {
+      const newResource = {
+        id: new Date().toISOString(),
+        title: title,
+        description: description,
+        link: url,
+      };
+      this.storedResources.unshift(newResource);
     },
   },
 };

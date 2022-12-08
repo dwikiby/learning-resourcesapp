@@ -12,6 +12,7 @@ export default {
 
 <style scoped>
 button {
+  border-radius: 10px;
   padding: 0.75rem 1.5rem;
   font-family: inherit;
   background-color: #3a0061;
